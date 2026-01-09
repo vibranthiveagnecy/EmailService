@@ -30,23 +30,27 @@ app.post('/send-email', async (req, res) => {
         return res.status(400).json({ success: false, message: "Missing fields" });
     }
 
+    // api/index.js (Inside the app.post block)
+
     try {
         const data = await resend.emails.send({
-            from: 'Contact Form <onboarding@resend.dev>>', // Default Resend test email
-            to: process.env.CLIENT_EMAIL, // The Client's Email
-            reply_to: email, // So the client can hit "Reply" and email the customer back
+            // 👇 THIS LINE MUST BE EXACTLY THIS FOR FREE ACCOUNTS
+            from: 'Contact Form <onboarding@resend.dev>', 
+            
+            // The "To" address comes from your .env file
+            to: process.env.CLIENT_EMAIL, 
+            
+            // This makes the "Reply" button work correctly
+            reply_to: email, 
+            
             subject: `New Lead: ${name}`,
             html: `
-                <h3>New Message from Website</h3>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Message:</strong></p>
-                <blockquote style="background: #f9f9f9; padding: 10px; border-left: 5px solid #ccc;">
-                    ${message}
-                </blockquote>
+                <p><strong>Message:</strong> ${message}</p>
             `
         });
-
+        
         return res.status(200).json({ success: true, message: "Email sent!", data });
 
     } catch (error) {
