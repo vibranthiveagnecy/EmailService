@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Client Email Backend",
+  "main": "api/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node api/app.js",
+    "dev": "node --watch api/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "resend": "^4.0.1"
+  }
+}
