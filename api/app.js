@@ -32,7 +32,7 @@ app.post('/send-email', async (req, res) => {
 
     try {
         const data = await resend.emails.send({
-            from: 'Contact Form <vibranthiveagnecy@gmail.com>', // Default Resend test email
+            from: 'Contact Form <onboarding@resend.dev>>', // Default Resend test email
             to: process.env.CLIENT_EMAIL, // The Client's Email
             reply_to: email, // So the client can hit "Reply" and email the customer back
             subject: `New Lead: ${name}`,
